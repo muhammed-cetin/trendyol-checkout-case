@@ -5,6 +5,8 @@ package com.trendyol.domain.item;
  * There is nothing concrete in place of Item, just the layout. DefaultItem, DigitalItem, VasItem all derive from Item.
  */
 
+import com.trendyol.domain.exception.ItemException;
+
 public abstract class Item {
 
     /// Allow subclasses (DefaultItem, DigitalItem) to be accessed but not externally (encapsulation) [protected]
@@ -29,7 +31,7 @@ public abstract class Item {
 
     public void decreaseQuantity(int amount) {
         if (this.quantity - amount < 0) {
-            throw new IllegalArgumentException("Quantity cannot be negative");
+            throw new ItemException("Quantity cannot be negative");
         }
         this.quantity -= amount;
     }

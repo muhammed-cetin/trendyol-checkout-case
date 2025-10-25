@@ -1,5 +1,7 @@
 package com.trendyol.domain.item;
 
+import com.trendyol.domain.exception.ItemException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +23,7 @@ public class DefaultItem extends Item {
     private void validate(int quantity) {
         // Quantity check
         if (quantity > MAX_ITEM_QUANTITY) {
-            throw new IllegalArgumentException(
+            throw new ItemException(
                     "DefaultItem quantity cannot exceed " + MAX_ITEM_QUANTITY
             );
         }
@@ -37,21 +39,21 @@ public class DefaultItem extends Item {
         // VasItem can only be added to Furniture and Electronics categories.
         if (this.categoryId != FURNITURE_CATEGORY_ID &&
                 this.categoryId != ELECTRONICS_CATEGORY_ID) {
-            throw new IllegalArgumentException(
+            throw new ItemException(
                     "VasItem can only be added to Furniture (1001) or Electronics (3004) categories"
             );
         }
 
         // A maximum of 3 VasItems can be added
         if (vasItems.size() >= MAX_VAS_ITEM_COUNT) {
-            throw new IllegalArgumentException(
+            throw new ItemException(
                     "Cannot add more than " + MAX_VAS_ITEM_COUNT + " VasItems to a DefaultItem"
             );
         }
 
         // VasItem price cannot be higher than DefaultItem price
         if (vasItem.getPrice() > this.price) {
-            throw new IllegalArgumentException(
+            throw new ItemException(
                     "VasItem price cannot be higher than DefaultItem price"
             );
         }

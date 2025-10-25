@@ -1,5 +1,7 @@
 package com.trendyol.domain.item;
 
+import com.trendyol.domain.exception.ItemException;
+
 public class VasItem extends Item {
 
     public static final int VAS_CATEGORY_ID = 3242;
@@ -14,21 +16,21 @@ public class VasItem extends Item {
     private void validate(int categoryId, int sellerId, int quantity) {
         // CategoryID check
         if (categoryId != VAS_CATEGORY_ID) {
-            throw new IllegalArgumentException(
+            throw new ItemException(
                     "VasItem categoryId must be " + VAS_CATEGORY_ID
             );
         }
 
         // SellerID check
         if (sellerId != VAS_SELLER_ID) {
-            throw new IllegalArgumentException(
+            throw new ItemException(
                     "VasItem sellerId must be " + VAS_SELLER_ID
             );
         }
 
         // Quantity check
         if (quantity > MAX_VAS_QUANTITY) {
-            throw new IllegalArgumentException(
+            throw new ItemException(
                     "VasItem quantity cannot exceed " + MAX_VAS_QUANTITY
             );
         }

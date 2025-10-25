@@ -1,5 +1,7 @@
 package com.trendyol.domain.item;
 
+import com.trendyol.domain.exception.ItemException;
+
 public class DigitalItem extends Item {
 
     private static final int DIGITAL_CATEGORY_ID = 7889;
@@ -13,14 +15,14 @@ public class DigitalItem extends Item {
     private void validate(int categoryId, int quantity) {
         // CategoryID check
         if (categoryId != DIGITAL_CATEGORY_ID) {
-            throw new IllegalArgumentException(
+            throw new ItemException(
                     "DigitalItem categoryId must be " + DIGITAL_CATEGORY_ID
             );
         }
 
         // Quantity check
         if (quantity > MAX_DIGITAL_QUANTITY) {
-            throw new IllegalArgumentException(
+            throw new ItemException(
                     "DigitalItem quantity cannot exceed " + MAX_DIGITAL_QUANTITY
             );
         }
